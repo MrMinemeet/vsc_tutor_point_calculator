@@ -18,6 +18,22 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hi');
+
+		// Get current workspace
+		let files = fetchFiles(getWorkspace());
+
+		// Filter files to only include .java files
+		files = files.filter((file) => {
+			return file.endsWith('.java') && !file.endsWith('In.java') && !file.endsWith('Out.java');
+		});
+
+		// Evaluate each file
+		let pointReduction = 0;
+
+		// TODO: Evaluate each file
+
+		// Display the result
+		vscode.window.showInformationMessage('Point reduction: ' + pointReduction);
 	});
 
 	context.subscriptions.push(disposable);
@@ -25,4 +41,29 @@ export function activate(context: vscode.ExtensionContext) {
 
 // This method is called when your extension is deactivated
 export function deactivate() {}
+
+// Get current workspace path
+function getWorkspace(): string {
+	const workspaces = vscode.workspace.workspaceFolders;
+	if (workspaces == undefined) {
+		return "";
+	} else {
+		return workspaces[0].uri.fsPath;
+	}
+}
+
+
+// Fetches all files files recursivly in a folder
+function fetchFiles(path: string, files: string[] = []): string[] {
+	const dir = fs.readdirSync(path
+		, { withFileTypes: true });
+	dir.forEach((file) => {
+		if (file.isDirectory()) {
+			files = fetchFiles(path + '/' + file.name, files);
+		} else {
+			files.push(path + '/' + file.name);
+		}
+	});
+	return files;
+}
 
