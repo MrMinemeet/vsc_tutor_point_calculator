@@ -1,8 +1,8 @@
 {
   "name": "tutor-point-calculator",
   "displayName": "Tutor Point Calculator",
-  "description": "The purpose of this extension is to calculate how much points the current student should get",
-  "version": "0.0.3",
+  "description": "Easily calculate points of students",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.73.0"
   },
@@ -13,7 +13,7 @@
   "license": "MIT",
   "publisher": "MrMinemeet",
   "categories": [
-    "Other"
+    "Education"
   ],
   "activationEvents": [
     "onCommand:tutor-point-calculator.calculatepoints"
