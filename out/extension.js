@@ -27,8 +27,9 @@ function activate(context) {
         files.forEach((file) => {
             pointReduction += evaluateFile(file);
         });
+        const maxPointsToGet = vscode.workspace.getConfiguration("tutor-point-calculator").get("maxPoints");
         // Display the result
-        vscode.window.showInformationMessage('Point reduction: ' + pointReduction);
+        vscode.window.showInformationMessage('Points to give: ' + (maxPointsToGet - pointReduction));
     });
     context.subscriptions.push(disposable);
 }

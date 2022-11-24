@@ -2,7 +2,7 @@
   "name": "tutor-point-calculator",
   "displayName": "Tutor Point Calculator",
   "description": "The purpose of this extension is to calculate how much points the current student should get",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.73.0"
   },
@@ -26,14 +26,22 @@
         "title": "Calculate Points"
       }
     ],
-    "keybindings": 
-    [
+    "keybindings": [
       {
         "command": "tutor-point-calculator.calculatepoints",
         "key": "ctrl+f3"
       }
-    ]
-    
+    ],
+    "configuration": {
+      "title": "Tutor Point Calculator",
+      "properties": {
+        "tutor-point-calculator.maxPoints": {
+          "type": "number",
+          "default": 24,
+          "description": "The amount of points the student should get"
+        }
+      }
+    }  
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
