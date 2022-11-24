@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:tutor-point-calculator.helloWorld"
+    "onCommand:tutor-point-calculator.calculatepoints"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "tutor-point-calculator.helloWorld",
-        "title": "Hello World"
+        "command": "tutor-point-calculator.calculatepoints",
+        "title": "Calculate Points"
       }
     ]
   },

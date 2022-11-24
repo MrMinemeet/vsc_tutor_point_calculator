@@ -10,11 +10,11 @@ const fs = require("fs");
 function activate(context) {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "tutor-point-calculator" is now active!');
+    console.log('TUTOR Point Calculator is now active!');
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('tutor-point-calculator.helloWorld', () => {
+    let disposable = vscode.commands.registerCommand('tutor-point-calculator.calculatepoints', () => {
         // The code you place here will be executed every time your command is executed
         // Display a message box to the user
         vscode.window.showInformationMessage('Hi');
@@ -26,7 +26,9 @@ function activate(context) {
         });
         // Evaluate each file
         let pointReduction = 0;
-        // TODO: Evaluate each file
+        files.forEach((file) => {
+            pointReduction += evaluateFile(file);
+        });
         // Display the result
         vscode.window.showInformationMessage('Point reduction: ' + pointReduction);
     });
@@ -39,17 +41,13 @@ exports.deactivate = deactivate;
 // Get current workspace path
 function getWorkspace() {
     const workspaces = vscode.workspace.workspaceFolders;
-    if (workspaces == undefined) {
-        return "";
-    }
-    else {
-        return workspaces[0].uri.fsPath;
-    }
+    return (workspaces == undefined) ? "" : workspaces[0].uri.fsPath;
 }
 // Fetches all files files recursivly in a folder
 function fetchFiles(path, files = []) {
-    const dir = fs.readdirSync(path, { withFileTypes: true });
-    dir.forEach((file) => {
+    const currDir = fs.readdirSync(path, { withFileTypes: true });
+    // Go through "files" in current directory and add them to the list or recurse into them if they are directories
+    currDir.forEach((file) => {
         if (file.isDirectory()) {
             files = fetchFiles(path + '/' + file.name, files);
         }
@@ -58,5 +56,22 @@ function fetchFiles(path, files = []) {
         }
     });
     return files;
+}
+function evaluateFile(path) {
+    // Open file and read it as a string
+    const fileContent = fs.readFileSync(path, 'utf8').toString();
+    // Split file into lines
+    const lines = fileContent.split('\n');
+    // Look for comments that are like "// TUTOR -xy:" using regex where XY is a whole number or a decimal number
+    let pointReduction = 0;
+    const regex = /\/\/\s*TUTOR\s*-\d+(\.\d+)?\s*:/g;
+    fileContent.match(regex)?.forEach((match) => {
+        // Extract the number after the "-" and add it to the point reduction
+        const number = match.match(/-\d+(\.\d+)?/g);
+        if (number != null) {
+            pointReduction += parseFloat(number[0]);
+        }
+    });
+    return pointReduction;
 }
 //# sourceMappingURL=extension.js.map
