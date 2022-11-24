@@ -6,6 +6,7 @@ I'm trying to automate a task that is very simple using a method that is likely 
 
 ## How to use it?
 Set the max reachable points in the settings under `tutor-point-calculator.maxPoints`. It is 24 by default, because I needed that amount :P
+By default it checks in `.java`, `.cs`, `.ts`, `.js`, but more can be added in `tutor-point-calculator.filesToCheck`. 
 
 Open a folder that contains the stuff you have to check and do your stuff. Make annotations with `// TUTOR -XY`, where `XY` can be a whole or decimal number.
 
@@ -15,5 +16,4 @@ You'll get a small information message, where you see the points for the student
 
 
 ## TODO:
-* Other formats for the annotations
-* Support more files than just `*.java`
+* Other formats for the annotations. Important for checking languages that don't use double slash as a comment

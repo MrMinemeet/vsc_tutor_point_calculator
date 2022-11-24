@@ -18,9 +18,16 @@ function activate(context) {
         // The code you place here will be executed every time your command is executed
         // Get current workspace
         let files = fetchFiles(getWorkspace());
-        // Filter files to only include .java files
+        // Filter files which are not set to be checked
+        const allowedFiles = vscode.workspace.getConfiguration('tutor-point-calculator').get('filesToCheck');
         files = files.filter((file) => {
-            return file.endsWith('.java') && !file.endsWith('In.java') && !file.endsWith('Out.java');
+            // Check if the file ends with one of the allowed file extensions
+            allowedFiles.forEach((allowedFile) => {
+                if (file.endsWith(allowedFile)) {
+                    return true;
+                }
+            });
+            return false;
         });
         // Evaluate each file
         let pointReduction = 0;

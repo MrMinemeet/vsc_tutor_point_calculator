@@ -2,7 +2,7 @@
   "name": "tutor-point-calculator",
   "displayName": "Tutor Point Calculator",
   "description": "Easily calculate points of students",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.73.0"
   },
@@ -39,6 +39,11 @@
           "type": "number",
           "default": 24,
           "description": "The amount of points the student should get"
+        },
+        "tutor-point-calculator.filesToCheck": {
+          "type": "array",
+          "default": [".java", ".cs", ".ts", ".js"],
+          "description": "Type of files to check"
         }
       }
     }  

@@ -20,9 +20,16 @@ export function activate(context: vscode.ExtensionContext) {
         // Get current workspace
         let files = fetchFiles(getWorkspace());
 
-        // Filter files to only include .java files
+        // Filter files which are not set to be checked
+        const allowedFiles = vscode.workspace.getConfiguration('tutor-point-calculator').get('filesToCheck') as Array<string>;
         files = files.filter((file) => {
-            return file.endsWith('.java') && !file.endsWith('In.java') && !file.endsWith('Out.java');
+            // Check if the file ends with one of the allowed file extensions
+            allowedFiles.forEach((allowedFile) => {
+                if (file.endsWith(allowedFile)) {
+                    return true;
+                }
+            });
+            return false;
         });
 
         // Evaluate each file
