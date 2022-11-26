@@ -22,15 +22,21 @@ export function activate(context: vscode.ExtensionContext) {
 
         // Filter files which are not set to be checked
         const allowedFiles = vscode.workspace.getConfiguration('tutor-point-calculator').get('filesToCheck') as Array<string>;
+
+        const ingoredFiles = vscode.workspace.getConfiguration('tutor-point-calculator').get('filesToIgnore') as Array<string>;
+
+
         files = files.filter((file) => {
-            // Check if the file ends with one of the allowed file extensions
+            // Check if the file ends with one of the allowed file extensions and are not in the ignore list
             allowedFiles.forEach((allowedFile) => {
-                if (file.endsWith(allowedFile)) {
+                if (file.endsWith(allowedFile) &&
+                    !ingoredFiles.some((ignoredFile) => file === ignoredFile)) {
                     return true;
                 }
             });
             return false;
         });
+        
 
         // Evaluate each file
         let pointReduction = 0;

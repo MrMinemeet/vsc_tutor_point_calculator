@@ -20,10 +20,12 @@ function activate(context) {
         let files = fetchFiles(getWorkspace());
         // Filter files which are not set to be checked
         const allowedFiles = vscode.workspace.getConfiguration('tutor-point-calculator').get('filesToCheck');
+        const ingoredFiles = vscode.workspace.getConfiguration('tutor-point-calculator').get('filesToIgnore');
         files = files.filter((file) => {
-            // Check if the file ends with one of the allowed file extensions
+            // Check if the file ends with one of the allowed file extensions and are not in the ignore list
             allowedFiles.forEach((allowedFile) => {
-                if (file.endsWith(allowedFile)) {
+                if (file.endsWith(allowedFile) &&
+                    !ingoredFiles.some((ignoredFile) => file === ignoredFile)) {
                     return true;
                 }
             });
