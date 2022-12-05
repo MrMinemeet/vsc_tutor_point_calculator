@@ -23,13 +23,7 @@ function activate(context) {
         const ingoredFiles = vscode.workspace.getConfiguration('tutor-point-calculator').get('filesToIgnore');
         files = files.filter((file) => {
             // Check if the file ends with one of the allowed file extensions and are not in the ignore list
-            allowedFiles.forEach((allowedFile) => {
-                if (file.endsWith(allowedFile) &&
-                    !ingoredFiles.some((ignoredFile) => file === ignoredFile)) {
-                    return true;
-                }
-            });
-            return false;
+            return allowedFiles.some((extension) => file.endsWith(extension)) && !ingoredFiles.some((ignore) => file.endsWith(ignore));
         });
         // Evaluate each file
         let pointReduction = 0;
@@ -38,7 +32,7 @@ function activate(context) {
         });
         const maxPointsToGet = vscode.workspace.getConfiguration("tutor-point-calculator").get("maxPoints");
         // Display the result
-        vscode.window.showInformationMessage('Points to give: ' + (maxPointsToGet - pointReduction));
+        vscode.window.showInformationMessage('Points to give: ' + (maxPointsToGet - Math.abs(pointReduction)));
     });
     context.subscriptions.push(disposable);
 }
