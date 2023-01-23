@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
-    const disposable = vscode.commands.registerCommand('tutor-point-calculator.calculatepoints', () => {
+    const calculatePointsDisposable = vscode.commands.registerCommand('tutor-point-calculator.calculatepoints', () => {
         // The code you place here will be executed every time your command is executed
 
         // Get current workspace
@@ -44,8 +44,34 @@ export function activate(context: vscode.ExtensionContext) {
         // Display the result
         vscode.window.showInformationMessage('Points to give: ' + (maxPointsToGet - Math.abs(pointReduction)));
     });
+    context.subscriptions.push(calculatePointsDisposable);
 
-    context.subscriptions.push(disposable);
+
+    const changeMaxPointsDisposable = vscode.commands.registerCommand('tutor-point-calculator.changemaxpoints', () => {
+        // Open input box to get new max points
+        vscode.window.showInputBox({
+            prompt: "Enter new max points",
+            value: vscode.workspace.getConfiguration("tutor-point-calculator").get("maxPoints") as string
+        }).then((value) => {
+            if (value == undefined) {
+                // Check if something was entered
+                vscode.window.showErrorMessage("No value was entered!");
+            } else if (isNaN(parseFloat(value))) {
+                // Check if the value is a number
+                vscode.window.showErrorMessage("The value is not a number!");
+            } else if (parseFloat(value) <= 0) {
+                // Check if the value is greater than 0
+                vscode.window.showErrorMessage("The value is not greater than 0!");
+            } else {
+                // Set the new value
+                const newValue = parseFloat(value);
+                vscode.workspace.getConfiguration("tutor-point-calculator").update("maxPoints", newValue, true);
+                vscode.window.showInformationMessage("Max points set to " + newValue);
+            }
+        });
+    });
+
+    context.subscriptions.push(changeMaxPointsDisposable);
 }
 
 // This method is called when your extension is deactivated

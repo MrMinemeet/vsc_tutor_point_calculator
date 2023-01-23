@@ -2,9 +2,9 @@
   "name": "tutor-point-calculator",
   "displayName": "Tutor Point Calculator",
   "description": "Easily calculate points of students",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "engines": {
-    "vscode": "^1.73.0"
+    "vscode": "^1.74.0"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,18 @@
       {
         "command": "tutor-point-calculator.calculatepoints",
         "title": "Calculate Points"
+      },
+      {
+        "command": "tutor-point-calculator.changemaxpoints",
+        "title": "Change Max Points",
+        "args": [
+          {
+            "name": "maxPoints",
+            "description": "The amount of points the student should get",
+            "type": "number",
+            "default": 24
+          }
+        ]
       }
     ],
     "keybindings": [
