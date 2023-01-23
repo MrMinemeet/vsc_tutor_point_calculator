@@ -14,6 +14,10 @@ When finished press `CTRL + F3` or execute the command `Calculate Points`.
 
 You'll get a small information message, where you see the points for the student.
 
+## Installation:
+You can either download it from the Marketplace [HERE](https://marketplace.visualstudio.com/items?itemName=MrMinemeet.tutor-point-calculator).
+Or directly download the latest .vsix file [HERE](https://github.com/MrMinemeet/vsc_tutor_point_calculator/releases/latest)
+
 
 ## TODO:
 * Other formats for the annotations. Important for checking languages that don't use double slash as a comment
