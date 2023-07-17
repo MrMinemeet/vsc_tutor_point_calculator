@@ -54,16 +54,24 @@
         },
         "tutor-point-calculator.filesToCheck": {
           "type": "array",
-          "default": [".java", ".cs", ".ts", ".js"],
+          "default": [
+            ".java",
+            ".cs",
+            ".ts",
+            ".js"
+          ],
           "description": "Type of files to check"
         },
         "tutor-point-calculator.filesToIgnore": {
           "type": "array",
-          "default": ["In.java", "Out.java"],
+          "default": [
+            "In.java",
+            "Out.java"
+          ],
           "description": "Files to ingore"
         }
       }
-    }  
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -77,8 +85,8 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "20.x",
     "@types/vscode": "^1.80.0",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "@vscode/test-electron": "^2.3.3",
     "eslint": "^8.44.0",
     "mocha": "^10.2.0",
