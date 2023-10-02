@@ -31,3 +31,6 @@ rules:
   'jest/prefer-to-have-length': 'error'
   'jest/prefer-expect-assertions': 'error'
   'jest/valid-expect': 'error'
+  indent:
+    - error
+    - tab
