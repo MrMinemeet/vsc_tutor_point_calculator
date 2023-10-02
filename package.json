@@ -50,7 +50,7 @@
         "tutor-point-calculator.maxPoints": {
           "type": "number",
           "default": 24,
-          "description": "The amount of points the student should get"
+          "description": "The amount of points the student should get."
         },
         "tutor-point-calculator.filesToCheck": {
           "type": "array",
@@ -60,7 +60,7 @@
             ".ts",
             ".js"
           ],
-          "description": "Type of files to check"
+          "description": "Type of files to check."
         },
         "tutor-point-calculator.filesToIgnore": {
           "type": "array",
@@ -69,6 +69,11 @@
             "Out.java"
           ],
           "description": "Files to ingore"
+        },
+        "tutor-point-calculator.commentMarker": {
+          "type": "string",
+          "default": "//",
+          "description": "Char/String that marks a comment."
         }
       }
     }
@@ -78,8 +83,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "lint": "eslint src --ext ts"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.2",
