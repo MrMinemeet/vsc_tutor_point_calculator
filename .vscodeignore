@@ -1,5 +1,6 @@
 **/*.ts
 **/tsconfig.json
+out/*.js.map
 .github/
 .vscode
 .gitignore
