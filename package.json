@@ -94,7 +94,7 @@
     "@vscode/test-electron": "^2.3.5",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-jest": "^27.4.2",
+    "eslint-plugin-jest": "^27.4.3",
     "eslint-plugin-prettier": "^5.0.1",
     "mocha": "^10.2.0",
     "typescript": "^5.2.2"
