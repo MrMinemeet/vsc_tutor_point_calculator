@@ -117,7 +117,7 @@ function evaluateFile(path: string): number {
 
 	// Look lines that are like "TUTOR -xy:" using regex where XY is a whole number or a decimal number
 	let pointReduction = 0;
-	const regex = /\s*TUTOR\s*-\d+(\.\d+)?\s*[Pp]:/g;
+	const regex = /\s*TUTOR\s*-\d+(\.\d+)?\s*[Pp]?:/g;
 	for (const line of possibleGrading) {
 		line.match(regex)?.forEach((match) => {
 			// Extract the number after the "-" and add it to the point reduction
