@@ -111,7 +111,13 @@ function evaluateFile(path: string): number {
 	for (const line of fileContent) {
 		if (line.includes(commentMarker)) {
 			// Split to only get the comment and store that
-			possibleGrading.push(line.split(commentMarker)[1]);
+			const splitLine = line.split(commentMarker);
+			for (const comment of splitLine) {
+				// Check if the comment is not empty
+				if (comment.trim() !== "") {
+					possibleGrading.push(comment);
+				}
+			}
 		}
 	}
 
