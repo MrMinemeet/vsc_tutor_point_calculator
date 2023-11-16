@@ -1,7 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import fs = require('fs');
+import * as fs from "fs";
+import * as archiver from "archiver";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -67,8 +68,28 @@ export function activate(context: vscode.ExtensionContext): void {
 			}
 		});
 	});
-
 	context.subscriptions.push(changeMaxPointsDisposable);
+
+	const zipFilesDisposable = vscode.commands.registerCommand('tutor-point-calculator.zipfiles', () => {
+		// Zip the folder into memory using jszip
+		const output = fs.createWriteStream("./test.zip");
+		output.on("close", () =>  console.log("Archive written!"));
+		const archive = archiver("zip", {
+			zlib: { level: 9 }
+		});
+		archive.on("warning", (err: archiver.ArchiverError) => {
+			if (err.code === "ENOENT") {
+				vscode.window.showWarningMessage("A warning came up during creation. Please check the log for further information.");
+				console.warn(err);
+			} else {
+				throw err;
+			}
+		});
+		archive.on("error", () => {
+			vscode.window.showErrorMessage("An error occured. Please check the log for further information");
+		});
+	});
+	context.subscriptions.push(zipFilesDisposable);
 }
 
 // This method is called when your extension is deactivated
