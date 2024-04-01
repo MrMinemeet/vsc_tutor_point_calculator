@@ -83,6 +83,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
+    "cib": "npm i && npm run lint . && npm run compile && vsce package",
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
