@@ -2,7 +2,7 @@
   "name": "tutor-point-calculator",
   "displayName": "Tutor Point Calculator",
   "description": "Easily calculate points of students",
-  "version": "0.17.1",
+  "version": "0.18.0",
   "engines": {
     "vscode": "^1.90.0"
   },
