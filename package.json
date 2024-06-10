@@ -4,7 +4,7 @@
   "description": "Easily calculate points of students",
   "version": "0.17.1",
   "engines": {
-    "vscode": "^1.89.0"
+    "vscode": "^1.90.0"
   },
   "repository": {
     "type": "git",
