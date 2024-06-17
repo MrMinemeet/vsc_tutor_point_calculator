@@ -1,3 +1,5 @@
+:warning: This extension will not be maintained anymore after this commit. Therefore, the final version of this extension from this repository will be `0.18.1`. If you want to take over, feel free to fork it. :warning:
+
 # Tutor Point Calculator
 This Extension should calculate how many points a student gets according to the tutor's annotations.
 
